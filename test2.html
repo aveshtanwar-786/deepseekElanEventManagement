@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-LAN 2025 - Annual College Fest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Glass Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #fff, #e9d5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #e9d5ff, #fce7f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Neumorphic Button */
+        .neuro-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 8px 8px 16px rgba(102, 126, 234, 0.4), -8px -8px 16px rgba(118, 75, 162, 0.4);
+            color: white;
+        }
+
+        .neuro-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 12px 12px 20px rgba(102, 126, 234, 0.5), -12px -12px 20px rgba(118, 75, 162, 0.5);
+        }
+
+        .secondary-btn {
+            padding: 1rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chevron-down {
+            margin-top: 4rem;
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(to right, #fff, #e9d5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-card {
+            padding: 2rem;
+        }
+
+        .about-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #c4b5fd;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #c4b5fd, #fbcfe8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            transition: opacity 0.3s;
+            opacity: 0.6;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 0.9;
+        }
+
+        .gallery-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Committee Section */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .member-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c4b5fd, #fbcfe8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-avatar i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: #c4b5fd;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-dept {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Leaderboard Section */
+        #leaderboard {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-container {
+            padding: 2rem;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .leaderboard-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .leaderboard-item.rank-1 {
+            background: linear-gradient(to right, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+            border: 2px solid rgba(251, 191, 36, 0.5);
+        }
+
+        .leaderboard-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
+        }
+
+        .rank-badge {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .rank-badge.gold {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+        }
+
+        .rank-badge.silver {
+            background: linear-gradient(135deg, #d1d5db, #9ca3af);
+            color: #1f2937;
+        }
+
+        .rank-badge.bronze {
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+            color: white;
+        }
+
+        .rank-badge.other {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .team-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .leaderboard-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .points {
+            text-align: right;
+        }
+
+        .points-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #c4b5fd;
+        }
+
+        .points-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #c4b5fd;
+            margin-top: 0.25rem;
+        }
+
+        .contact-details p:first-child {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p:last-child {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .contact-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #c4b5fd;
+            box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.3);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group textarea {
+            resize: none;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #fff, #e9d5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .contact-grid,
+            .about-grid,
+            .gallery-grid,
+            .committee-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">E-LAN</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#committee" class="nav-link">Committee</a></li>
+                <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#gallery" class="mobile-link">Gallery</a>
+            <a href="#committee" class="mobile-link">Committee</a>
+            <a href="#leaderboard" class="mobile-link">Leaderboard</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content animate-fadeInUp">
+                <h1 class="hero-title">E-LAN 2025</h1>
+                <p class="hero-subtitle">Where Innovation Meets Celebration</p>
+                <p class="hero-description">Join us for the most spectacular college fest of the year</p>
+                <div class="cta-buttons">
+                    <button class="neuro-btn">Register Now</button>
+                    <button class="secondary-btn" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+                </div>
+                <div class="chevron-down animate-float">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About E-LAN</h2>
+            
+            <div class="about-grid">
+                <div class="glass-card about-card animate-fadeInUp">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Event Details</h3>
+                    <p>E-LAN is the annual technical and cultural extravaganza that brings together brilliant minds from across the nation. Experience three days of innovation, creativity, and celebration from March 15-17, 2025.</p>
+                </div>
+                <div class="glass-card about-card animate-fadeInUp">
+                    <i class="fas fa-users"></i>
+                    <h3>Join the Community</h3>
+                    <p>Connect with over 5,000+ participants, 100+ colleges, and industry experts. Network, compete, and create memories that last a lifetime in our diverse range of technical and cultural events.</p>
+                </div>
+            </div>
+
+            <div class="glass-card stats animate-fadeInUp">
+                <div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Events</div>
+                </div>
+                <div>
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Participants</div>
+                </div>
+                <div>
+                    <div class="stat-number">₹10L+</div>
+                    <div class="stat-label">Prize Money</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="glass-card gallery-item">
+                    <div class="gallery-overlay" style="background: linear-gradient(135deg, #a855f7, #ec4899);">
+                        <div>
+                            <h3>Opening Ceremony</h3>
+                            <p>E-LAN 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card gallery-item">
+                    <div class="gallery-overlay" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">
+                        <div>
+                            <h3>Tech Events</h3>
+                            <p>E-LAN 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card gallery-item">
+                    <div class="gallery-overlay" style="background: linear-gradient(135deg, #f97316, #ef4444);">
+                        <div>
+                            <h3>Cultural Night</h3>
+                            <p>E-LAN 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card gallery-item">
+                    <div class="gallery-overlay" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
+                        <div>
+                            <h3>DJ Night</h3>
+                            <p>E-LAN 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card gallery-item">
+                    <div class="gallery-overlay" style="background: linear-gradient(135deg, #eab308, #f97316);">
+                        <div>
+                            <h3>Sports Arena</h3>
+                            <p>E-LAN 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card gallery-item">
+                    <div class="gallery-overlay" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
+                        <div>
+                            <h3>Award Ceremony</h3>
+                            <p>E-LAN 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Committee Section -->
+    <section id="committee">
+        <div class="container">
+            <h2 class="section-title">Core Committee</h2>
+            <div class="committee-grid">
+                <div class="glass-card member-card">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Arjun Sharma</div>
+                    <div class="member-role">Festival Director</div>
+                    <div class="member-dept">Computer Science</div>
+                </div>
+                <div class="glass-card member-card">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Priya Patel</div>
+                    <div class="member-role">Technical Head</div>
+                    <div class="member-dept">Information Technology</div>
+                </div>
+                <div class="glass-card member-card">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Rahul Verma</div>
+                    <div class="member-role">Cultural Head</div>
+                    <div class="member-dept">Electronics</div>
+                </div>
+                <div class="glass-card member-card">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Sneha Reddy</div>
+                    <div class="member-role">Sponsorship Head</div>
+                    <div class="member-dept">Mechanical</div>
+                </div>
+                <div class="glass-card member-card">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Vikram Singh</div>
+                    <div class="member-role">Marketing Head</div>
+                    <div class="member-dept">Civil</div>
+                </div>
+                <div class="glass-card member-card">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Ananya Gupta</div>
+                    <div class="member-role">Logistics Head</div>
+                    <div class="member-dept">Electrical</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard">
+        <div class="container">
+            <h2 class="section-title">Leaderboard</h2>
+            <div class="glass-card leaderboard-container">
+                <div class="leaderboard-item rank-1">
+                    <div class="leaderboard-left">
+                        <div class="rank-badge gold">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="team-info">
+                            <h3>Tech Titans</h3>
+                            <p>MIT College</p>
+                        </div>
+                    </div>
+                    <div class="leaderboard-right">
+                        <div class="points">
+                            <div class="points-value">2450</div>
+                            <div class="points-label">points</div>
+                        </div>
+                        <i class="fas fa-award" style="color: #fbbf24; font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="leaderboard-left">
+                        <div class="rank-badge silver">2</div>
+                        <div class="team-info">
+                            <h3>Code Crusaders</h3>
+                            <p>IIT Delhi</p>
+                        </div>
+                    </div>
+                    <div class="leaderboard-right">
+                        <div class="points">
+                            <div class="points-value">2380</div>
+                            <div class="points-label">points</div>
+                        </div>
+                        <i class="fas fa-award" style="color: #d1d5db; font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="leaderboard-left">
+                        <div class="rank-badge bronze">3</div>
+                        <div class="team-info">
+                            <h3>Innovation Hub</h3>
+                            <p>NIT Trichy</p>
+                        </div>
+                    </div>
+                    <div class="leaderboard-right">
+                        <div class="points">
+                            <div class="points-value">2250</div>
+                            <div class="points-label">points</div>
+                        </div>
+                        <i class="fas fa-award" style="color: #fb923c; font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="leaderboard-left">
+                        <div class="rank-badge other">4</div>
+                        <div class="team-info">
+                            <h3>Digital Warriors</h3>
+                            <p>BITS Pilani</p>
+                        </div>
+                    </div>
+                    <div class="leaderboard-right">
+                        <div class="points">
+                            <div class="points-value">2100</div>
+                            <div class="points-label">points</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="leaderboard-left">
+                        <div class="rank-badge other">5</div>
+                        <div class="team-info">
+                            <h3>Cyber Squad</h3>
+                            <p>VIT Vellore</p>
+                        </div>
+                    </div>
+                    <div class="leaderboard-right">
+                        <div class="points">
+                            <div class="points-value">1950</div>
+                            <div class="points-label">points</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="glass-card contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-details">
+                            <p>Email</p>
+                            <p>contact@elan2025.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-details">
+                            <p>Phone</p>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-details">
+                            <p>Location</p>
+                            <p>College Campus, City, State</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <button class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></button>
+                        <button class="social-btn" aria-label="Facebook"><i class="fab fa-facebook"></i></button>
+                        <button class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></button>
+                    </div>
+                </div>
+
+                <div class="glass-card contact-form">
+                    <h3>Send us a Message</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" aria-label="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" aria-label="Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" aria-label="Message"></textarea>
+                    </div>
+                    <button class="neuro-btn" style="width: 100%;">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">E-LAN 2025</div>
+        <div class="footer-tagline">Where Innovation Meets Celebration</div>
+        <div class="footer-copyright">© 2025 E-LAN. All rights reserved. Made with passion by the E-LAN team.</div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Update active nav link
+            updateActiveLink();
+        });
+
+        // Active Navigation Link
+        function updateActiveLink() {
+            const sections = ['home', 'about', 'gallery', 'committee', 'leaderboard', 'contact'];
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150 && rect.bottom >= 150) {
+                    currentSection = sectionId;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Add staggered animation delays
+        document.querySelectorAll('.about-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.member-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
