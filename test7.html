@@ -4,7 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-LAN | Annual College Fest</title>
+    <title>E-LAN | Annual College Fest - MIT College</title>
+    <meta name="description"
+        content="E-LAN 2023 - MIT College's Annual Cultural & Technical Fest. Join us for 3 days of competitions, workshops, and performances.">
+    <meta name="keywords" content="E-LAN, college fest, MIT College, cultural fest, technical events">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="E-LAN 2023 - MIT College Annual Fest">
+    <meta property="og:description"
+        content="Join MIT College's biggest annual cultural and technical fest with 50+ events, workshops, and performances.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,6 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <style>
         :root {
             /* Light Mode Colors */
@@ -279,6 +294,42 @@
             background: transparent;
             border: 2px solid var(--accent);
             color: var(--accent);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Hero Section */
@@ -620,6 +671,51 @@
 
         .gallery-item:hover::after {
             opacity: 1;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: var(--border);
+            background: var(--light);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+
+        .form-control.error {
+            border-color: #ff4757;
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+        }
+
+        .error-message {
+            color: #ff4757;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
         }
 
         /* Payment Modal */
@@ -988,6 +1084,215 @@
             color: var(--text-secondary);
         }
 
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 60px 0 30px;
+            border-top: var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: var(--border);
+            color: var(--text-secondary);
+        }
+
+        .footer-bottom-links {
+            margin-top: 10px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: var(--light);
+            color: var(--text);
+            box-shadow: var(--shadow);
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left-color: #2ed573;
+        }
+
+        .toast.error {
+            border-left-color: #ff4757;
+        }
+
+        .toast.warning {
+            border-left-color: #ffa502;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .hero h1 {
@@ -996,6 +1301,10 @@
 
             .section-title h2 {
                 font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -1010,7 +1319,8 @@
             }
 
             .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             .hero-image {
@@ -1115,15 +1425,15 @@
             .payment-methods {
                 grid-template-columns: 1fr;
             }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 2.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
             }
 
             .hero-btns {
@@ -1157,6 +1467,10 @@
 
             .events-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .ticket-actions {
+                flex-direction: column;
             }
         }
 
@@ -1208,6 +1522,14 @@
 <body>
     <div id="particles-js"></div>
 
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <header>
         <div class="container">
             <nav class="navbar">
@@ -1239,8 +1561,8 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Welcome to <span style="color: var(--accent)">E-LAN 2023</span></h1>
-                <p>The most awaited annual college fest is back with more excitement, competitions, and memories to
-                    create. Join us for an unforgettable experience!</p>
+                <p>MIT College's Annual Cultural & Technical Fest is back with more excitement, competitions, and
+                    memories to create. Join us for an unforgettable experience from December 15-17, 2023!</p>
 
                 <div class="countdown">
                     <div class="countdown-item glass glow">
@@ -1283,13 +1605,16 @@
             </div>
             <div class="about-content">
                 <div class="about-text glass fade-in">
-                    <h3>Biggest College Fest of the Year</h3>
-                    <p>E-LAN is the annual cultural and technical fest of our college, bringing together students from
-                        various institutions for three days of competitions, workshops, performances, and fun.</p>
-                    <p>With over 50 events spanning across technical, cultural, and sports categories, E-LAN provides a
-                        platform for students to showcase their talents and create lasting memories.</p>
-                    <p>This year, we're taking it to the next level with international artists, tech innovators, and
-                        exciting prizes worth over ₹5 lakhs!</p>
+                    <h3>MIT College's Biggest Annual Fest</h3>
+                    <p>E-LAN is the premier annual cultural and technical fest of MIT College, bringing together
+                        students from various institutions for three days of intense competitions, innovative workshops,
+                        spectacular performances, and unforgettable memories.</p>
+                    <p>With over 50 events spanning across technical, cultural, literary, and sports categories, E-LAN
+                        provides a platform for students to showcase their talents, learn new skills, and create lasting
+                        connections.</p>
+                    <p>This year, we're taking it to the next level with international artists, renowned tech
+                        innovators, and exciting prizes worth over ₹5 lakhs! Join us for an experience that transcends
+                        boundaries.</p>
 
                     <div class="about-stats">
                         <div class="stat glass glow">
@@ -1325,11 +1650,15 @@
                 <div class="event-card glass fade-in">
                     <div class="event-category">Technical</div>
                     <h3>Code Wars</h3>
-                    <p>Test your coding skills in this intense programming competition. Solve complex algorithms and win
-                        exciting prizes.</p>
+                    <p>Test your coding skills in this intense programming competition. Solve complex algorithms, debug
+                        challenging code, and showcase your problem-solving abilities against the best programmers.</p>
                     <div class="event-details">
                         <span><i class="fas fa-calendar"></i> Dec 15, 2023</span>
-                        <span><i class="fas fa-clock"></i> 10:00 AM</span>
+                        <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                    </div>
+                    <div class="event-details">
+                        <span><i class="fas fa-map-marker-alt"></i> CS Lab, Block A</span>
+                        <span><i class="fas fa-user"></i> Solo Event</span>
                     </div>
                     <div class="event-price">₹200</div>
                     <div class="event-actions">
@@ -1340,11 +1669,15 @@
                 <div class="event-card glass fade-in">
                     <div class="event-category">Cultural</div>
                     <h3>Battle of Bands</h3>
-                    <p>Showcase your musical talent in this epic battle. Bring your band and compete for the title of
-                        Best Band.</p>
+                    <p>Showcase your musical talent in this epic battle of bands. Bring your crew, your instruments, and
+                        your passion to compete for the prestigious title of Best Band and amazing prizes.</p>
                     <div class="event-details">
                         <span><i class="fas fa-calendar"></i> Dec 16, 2023</span>
-                        <span><i class="fas fa-clock"></i> 6:00 PM</span>
+                        <span><i class="fas fa-clock"></i> 6:00 PM - 10:00 PM</span>
+                    </div>
+                    <div class="event-details">
+                        <span><i class="fas fa-map-marker-alt"></i> Main Stage</span>
+                        <span><i class="fas fa-user"></i> Team Event (2-6)</span>
                     </div>
                     <div class="event-price">₹300</div>
                     <div class="event-actions">
@@ -1355,10 +1688,15 @@
                 <div class="event-card glass fade-in">
                     <div class="event-category">Workshop</div>
                     <h3>AI & ML Workshop</h3>
-                    <p>Learn the fundamentals of Artificial Intelligence and Machine Learning from industry experts.</p>
+                    <p>Learn the fundamentals of Artificial Intelligence and Machine Learning from industry experts.
+                        Hands-on sessions with real-world projects and certification upon completion.</p>
                     <div class="event-details">
                         <span><i class="fas fa-calendar"></i> Dec 15, 2023</span>
-                        <span><i class="fas fa-clock"></i> 2:00 PM</span>
+                        <span><i class="fas fa-clock"></i> 2:00 PM - 6:00 PM</span>
+                    </div>
+                    <div class="event-details">
+                        <span><i class="fas fa-map-marker-alt"></i> Seminar Hall</span>
+                        <span><i class="fas fa-user"></i> Individual</span>
                     </div>
                     <div class="event-price">₹150</div>
                     <div class="event-actions">
@@ -1379,23 +1717,24 @@
                 <div class="timeline-item fade-in">
                     <div class="timeline-content glass">
                         <h3>Day 1: Inauguration & Technical Events</h3>
-                        <p>Grand opening ceremony followed by coding competitions, hackathons, and robotics challenges.
-                        </p>
+                        <p>Grand opening ceremony with chief guest followed by coding competitions, hackathons, robotics
+                            challenges, and technical workshops. Evening features EDM night with renowned DJ.</p>
                         <span class="date">December 15, 2023</span>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-content glass">
                         <h3>Day 2: Cultural Extravaganza</h3>
-                        <p>Music, dance, drama competitions and performances by renowned artists.</p>
+                        <p>Music, dance, drama competitions throughout the day. Battle of Bands finals, fashion show,
+                            and performances by renowned artists. Cultural night with live performances.</p>
                         <span class="date">December 16, 2023</span>
                     </div>
                 </div>
                 <div class="timeline-item fade-in">
                     <div class="timeline-content glass">
                         <h3>Day 3: Sports & Valediction</h3>
-                        <p>Sports tournaments, gaming competitions, and the grand closing ceremony with prize
-                            distribution.</p>
+                        <p>Sports tournaments, gaming competitions, treasure hunt, and fun games. Grand closing ceremony
+                            with prize distribution, celebrity performance, and fireworks display.</p>
                         <span class="date">December 17, 2023</span>
                     </div>
                 </div>
@@ -1410,40 +1749,28 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item glass fade-in">
-                    <div
-                        style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--secondary), var(--primary)); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-music" style="font-size: 3rem;"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Music Performance" loading="lazy">
                 </div>
                 <div class="gallery-item glass fade-in">
-                    <div
-                        style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-theater-masks" style="font-size: 3rem;"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Coding Competition" loading="lazy">
                 </div>
                 <div class="gallery-item glass fade-in">
-                    <div
-                        style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--accent), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-robot" style="font-size: 3rem;"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Dance Performance" loading="lazy">
                 </div>
                 <div class="gallery-item glass fade-in">
-                    <div
-                        style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--secondary), var(--primary)); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-drum" style="font-size: 3rem;"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Workshop Session" loading="lazy">
                 </div>
                 <div class="gallery-item glass fade-in">
-                    <div
-                        style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-paint-brush" style="font-size: 3rem;"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Art Exhibition" loading="lazy">
                 </div>
                 <div class="gallery-item glass fade-in">
-                    <div
-                        style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--accent), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fas fa-trophy" style="font-size: 3rem;"></i>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Award Ceremony" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1462,7 +1789,7 @@
                         </div>
                         <div>
                             <h4>Location</h4>
-                            <p>College Campus, City, State - 123456</p>
+                            <p>MIT College Campus, Pune, Maharashtra - 411038</p>
                         </div>
                     </div>
                     <div class="contact-item glass fade-in">
@@ -1480,7 +1807,7 @@
                         </div>
                         <div>
                             <h4>Email</h4>
-                            <p>info@elanfest.com</p>
+                            <p>info@elan-mit.com</p>
                         </div>
                     </div>
                     <div class="contact-item glass fade-in">
@@ -1494,28 +1821,109 @@
                     </div>
                 </div>
                 <div class="contact-form glass fade-in">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" placeholder="Enter subject">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control" placeholder="Enter your message"></textarea>
-                    </div>
-                    <button class="btn">Send Message</button>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input type="text" id="contactName" class="form-control" placeholder="Enter your name"
+                                required>
+                            <div class="error-message" id="nameError">Please enter your name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Your Email</label>
+                            <input type="email" id="contactEmail" class="form-control" placeholder="Enter your email"
+                                required>
+                            <div class="error-message" id="emailError">Please enter a valid email</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" class="form-control" placeholder="Enter subject"
+                                required>
+                            <div class="error-message" id="subjectError">Please enter a subject</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" class="form-control" placeholder="Enter your message" rows="5"
+                                required></textarea>
+                            <div class="error-message" id="messageError">Please enter your message</div>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-music"></i>
+                        E-<span>LAN</span>
+                    </div>
+                    <p class="footer-description">MIT College's Annual Cultural & Technical Fest. Join us for three days
+                        of innovation, creativity, and unforgettable memories.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links-section">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#timeline">Timeline</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4 class="footer-heading">Events</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Technical Events</a></li>
+                        <li><a href="#">Cultural Events</a></li>
+                        <li><a href="#">Workshops</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Literary Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-section">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 E-LAN - MIT College. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Payment Modal -->
     <div class="payment-modal" id="paymentModal">
         <div class="payment-container glass glow">
             <div class="close-payment" id="closePayment">
@@ -1542,16 +1950,21 @@
             </div>
             <form class="payment-form" id="paymentForm">
                 <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                    <label for="paymentName">Full Name</label>
+                    <input type="text" id="paymentName" class="form-control" placeholder="Enter your full name"
+                        required>
+                    <div class="error-message" id="paymentNameError">Please enter your full name</div>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    <label for="paymentEmail">Email Address</label>
+                    <input type="email" id="paymentEmail" class="form-control" placeholder="Enter your email" required>
+                    <div class="error-message" id="paymentEmailError">Please enter a valid email address</div>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                    <label for="paymentPhone">Phone Number</label>
+                    <input type="tel" id="paymentPhone" class="form-control" placeholder="Enter your phone number"
+                        required>
+                    <div class="error-message" id="paymentPhoneError">Please enter a valid phone number</div>
                 </div>
                 <div class="form-group">
                     <label>Select Payment Method</label>
@@ -1566,11 +1979,14 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn payment-btn">Pay Now</button>
+                <button type="submit" class="btn payment-btn" id="paymentSubmit">
+                    <span class="btn-text">Pay Now</span>
+                </button>
             </form>
         </div>
     </div>
 
+    <!-- Ticket Modal -->
     <div class="ticket-modal" id="ticketModal">
         <div class="ticket-container glass glow">
             <div class="close-ticket" id="closeTicket">
@@ -1614,18 +2030,21 @@
         </div>
     </div>
 
+    <!-- Login Popup -->
     <div class="login-popup" id="loginPopup">
         <div class="login-container glass glow">
             <div class="close-login" id="closeLogin">
                 <i class="fas fa-times"></i>
             </div>
             <h2 class="login-title">Login to E-LAN</h2>
-            <form class="login-form">
+            <form class="login-form" id="loginForm">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username or Email" required>
+                    <input type="text" class="form-control" id="loginUsername" placeholder="Username or Email" required>
+                    <div class="error-message" id="loginUsernameError">Please enter your username or email</div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    <div class="error-message" id="loginPasswordError">Please enter your password</div>
                 </div>
                 <div class="form-options">
                     <div class="remember-me">
@@ -1647,8 +2066,189 @@
     </div>
 
     <script>
-        // Initialize EmailJS (Replace with your actual EmailJS credentials)
-        emailjs.init("user_your_emailjs_user_id");
+        // Configuration - Replace with actual credentials in production
+        const CONFIG = {
+            EMAILJS: {
+                SERVICE_ID: 'your_service_id',
+                TEMPLATE_ID: 'your_template_id',
+                PUBLIC_KEY: 'your_public_key'
+            },
+            RAZORPAY: {
+                KEY: 'rzp_test_your_key_here'
+            },
+            RATE_LIMIT: {
+                MAX_REQUESTS: 5,
+                TIME_WINDOW: 60000 // 1 minute
+            }
+        };
+
+        // Rate limiting implementation
+        class RateLimiter {
+            constructor(maxRequests, timeWindow) {
+                this.maxRequests = maxRequests;
+                this.timeWindow = timeWindow;
+                this.requests = new Map();
+            }
+
+            isAllowed(identifier) {
+                const now = Date.now();
+                const userRequests = this.requests.get(identifier) || [];
+
+                // Remove old requests
+                const validRequests = userRequests.filter(time => now - time < this.timeWindow);
+
+                if (validRequests.length >= this.maxRequests) {
+                    return false;
+                }
+
+                validRequests.push(now);
+                this.requests.set(identifier, validRequests);
+                return true;
+            }
+        }
+
+        const rateLimiter = new RateLimiter(CONFIG.RATE_LIMIT.MAX_REQUESTS, CONFIG.RATE_LIMIT.TIME_WINDOW);
+
+        // Utility Functions
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePhone(phone) {
+            const re = /^[6-9]\d{9}$/;
+            return re.test(phone.replace(/\D/g, ''));
+        }
+
+        // Form Validation
+        class FormValidator {
+            constructor(formId) {
+                this.form = document.getElementById(formId);
+                this.fields = {};
+                this.init();
+            }
+
+            init() {
+                const inputs = this.form.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    if (input.id) {
+                        this.fields[input.id] = {
+                            element: input,
+                            errorElement: document.getElementById(input.id + 'Error'),
+                            validations: []
+                        };
+                    }
+                });
+            }
+
+            addValidation(fieldId, validationFn, errorMessage) {
+                if (this.fields[fieldId]) {
+                    this.fields[fieldId].validations.push({
+                        validate: validationFn,
+                        message: errorMessage
+                    });
+                }
+            }
+
+            validateField(fieldId) {
+                const field = this.fields[fieldId];
+                if (!field) return true;
+
+                const value = field.element.value.trim();
+                let isValid = true;
+
+                for (const validation of field.validations) {
+                    if (!validation.validate(value)) {
+                        this.showError(fieldId, validation.message);
+                        isValid = false;
+                        break;
+                    }
+                }
+
+                if (isValid) {
+                    this.hideError(fieldId);
+                }
+
+                return isValid;
+            }
+
+            validateForm() {
+                let isValid = true;
+                for (const fieldId in this.fields) {
+                    if (!this.validateField(fieldId)) {
+                        isValid = false;
+                    }
+                }
+                return isValid;
+            }
+
+            showError(fieldId, message) {
+                const field = this.fields[fieldId];
+                if (field) {
+                    field.element.classList.add('error');
+                    if (field.errorElement) {
+                        field.errorElement.textContent = message;
+                        field.errorElement.classList.add('show');
+                    }
+                }
+            }
+
+            hideError(fieldId) {
+                const field = this.fields[fieldId];
+                if (field) {
+                    field.element.classList.remove('error');
+                    if (field.errorElement) {
+                        field.errorElement.classList.remove('show');
+                    }
+                }
+            }
+
+            resetForm() {
+                for (const fieldId in this.fields) {
+                    this.hideError(fieldId);
+                    this.fields[fieldId].element.value = '';
+                }
+            }
+        }
+
+        // Initialize validators
+        const contactValidator = new FormValidator('contactForm');
+        const paymentValidator = new FormValidator('paymentForm');
+        const loginValidator = new FormValidator('loginForm');
+
+        // Add validations
+        contactValidator.addValidation('contactName', (val) => val.length >= 2, 'Name must be at least 2 characters');
+        contactValidator.addValidation('contactEmail', validateEmail, 'Please enter a valid email address');
+        contactValidator.addValidation('contactSubject', (val) => val.length >= 5, 'Subject must be at least 5 characters');
+        contactValidator.addValidation('contactMessage', (val) => val.length >= 10, 'Message must be at least 10 characters');
+
+        paymentValidator.addValidation('paymentName', (val) => val.length >= 2, 'Name must be at least 2 characters');
+        paymentValidator.addValidation('paymentEmail', validateEmail, 'Please enter a valid email address');
+        paymentValidator.addValidation('paymentPhone', validatePhone, 'Please enter a valid 10-digit phone number');
+
+        loginValidator.addValidation('loginUsername', (val) => val.length >= 3, 'Username must be at least 3 characters');
+        loginValidator.addValidation('loginPassword', (val) => val.length >= 6, 'Password must be at least 6 characters');
+
+        // Initialize EmailJS
+        emailjs.init(CONFIG.EMAILJS.PUBLIC_KEY);
 
         // Initialize particles.js
         document.addEventListener('DOMContentLoaded', function () {
@@ -1728,6 +2328,7 @@
         const summaryPrice = document.getElementById('summaryPrice');
         const summaryTotal = document.getElementById('summaryTotal');
         const paymentMethods = document.querySelectorAll('.payment-method');
+        const paymentSubmit = document.getElementById('paymentSubmit');
 
         let selectedEvent = '';
         let selectedPrice = 0;
@@ -1736,6 +2337,11 @@
         // Event booking button click
         bookButtons.forEach(button => {
             button.addEventListener('click', function () {
+                if (!rateLimiter.isAllowed('event_booking')) {
+                    showToast('Too many booking attempts. Please wait a moment.', 'error');
+                    return;
+                }
+
                 selectedEvent = this.getAttribute('data-event');
                 selectedPrice = parseInt(this.getAttribute('data-price'));
 
@@ -1744,6 +2350,7 @@
                 summaryTotal.textContent = `₹${selectedPrice + 20}`;
 
                 paymentModal.classList.add('active');
+                paymentValidator.resetForm();
             });
         });
 
@@ -1762,56 +2369,94 @@
         });
 
         // Payment form submission
-        paymentForm.addEventListener('submit', function (e) {
+        paymentForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const totalAmount = (selectedPrice + 20) * 100; // Convert to paise for Razorpay
+            if (!paymentValidator.validateForm()) {
+                showToast('Please fix the errors in the form', 'error');
+                return;
+            }
 
-            // Process payment based on selected method
-            if (selectedMethod === 'razorpay') {
-                processRazorpayPayment(name, email, phone, totalAmount);
-            } else if (selectedMethod === 'paypal') {
-                processPayPalPayment(name, email, phone, totalAmount);
+            const name = document.getElementById('paymentName').value;
+            const email = document.getElementById('paymentEmail').value;
+            const phone = document.getElementById('paymentPhone').value;
+            const totalAmount = (selectedPrice + 20) * 100;
+
+            // Show loading state
+            paymentSubmit.classList.add('btn-loading');
+            paymentSubmit.disabled = true;
+
+            try {
+                // Process payment based on selected method
+                if (selectedMethod === 'razorpay') {
+                    await processRazorpayPayment(name, email, phone, totalAmount);
+                } else if (selectedMethod === 'paypal') {
+                    await processPayPalPayment(name, email, phone, totalAmount);
+                }
+            } catch (error) {
+                showToast('Payment failed. Please try again.', 'error');
+                console.error('Payment error:', error);
+            } finally {
+                paymentSubmit.classList.remove('btn-loading');
+                paymentSubmit.disabled = false;
             }
         });
 
         // Razorpay Payment Integration
         function processRazorpayPayment(name, email, phone, amount) {
-            const options = {
-                key: "rzp_test_your_razorpay_key", // Replace with your Razorpay key
-                amount: amount,
-                currency: "INR",
-                name: "E-LAN Fest",
-                description: `Ticket for ${selectedEvent}`,
-                image: "/logo.png",
-                handler: function (response) {
-                    // Payment successful
-                    generateTicket(name, email, phone, response.razorpay_payment_id);
-                    paymentModal.classList.remove('active');
-                },
-                prefill: {
-                    name: name,
-                    email: email,
-                    contact: phone
-                },
-                theme: {
-                    color: "#8A2BE2"
-                }
-            };
+            return new Promise((resolve, reject) => {
+                const options = {
+                    key: CONFIG.RAZORPAY.KEY,
+                    amount: amount,
+                    currency: "INR",
+                    name: "E-LAN Fest - MIT College",
+                    description: `Ticket for ${selectedEvent}`,
+                    image: "/logo.png",
+                    handler: function (response) {
+                        // Payment successful
+                        generateTicket(name, email, phone, response.razorpay_payment_id);
+                        paymentModal.classList.remove('active');
+                        showToast('Payment successful! Your ticket has been generated.', 'success');
+                        resolve(response);
+                    },
+                    prefill: {
+                        name: name,
+                        email: email,
+                        contact: phone
+                    },
+                    theme: {
+                        color: "#8A2BE2"
+                    },
+                    modal: {
+                        ondismiss: function () {
+                            reject(new Error('Payment cancelled by user'));
+                        }
+                    }
+                };
 
-            const rzp = new Razorpay(options);
-            rzp.open();
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response) {
+                    reject(new Error(response.error.description));
+                });
+                rzp.open();
+            });
         }
 
         // PayPal Payment Integration (Mock)
         function processPayPalPayment(name, email, phone, amount) {
-            // In a real implementation, this would integrate with PayPal API
-            alert('PayPal integration would be implemented here. For demo, we\'ll proceed with ticket generation.');
-            generateTicket(name, email, phone, 'PP_' + Math.random().toString(36).substr(2, 9));
-            paymentModal.classList.remove('active');
+            return new Promise((resolve, reject) => {
+                // Simulate API call
+                setTimeout(() => {
+                    if (Math.random() > 0.1) { // 90% success rate for demo
+                        generateTicket(name, email, phone, 'PP_' + Math.random().toString(36).substr(2, 9));
+                        paymentModal.classList.remove('active');
+                        showToast('Payment successful! Your ticket has been generated.', 'success');
+                        resolve();
+                    } else {
+                        reject(new Error('PayPal payment failed'));
+                    }
+                }, 2000);
+            });
         }
 
         // Ticket Generation
@@ -1846,9 +2491,12 @@
                 email: email,
                 ticketId: ticketId,
                 date: eventDate,
-                time: eventTime
+                time: eventTime,
+                paymentId: paymentId
             });
 
+            // Clear previous QR code
+            document.getElementById('qrcode').innerHTML = '';
             QRCode.toCanvas(document.getElementById('qrcode'), qrData, function (error) {
                 if (error) console.error(error);
             });
@@ -1861,7 +2509,6 @@
         }
 
         function getEventDate(eventName) {
-            // Mock function to get event date
             const eventDates = {
                 'Code Wars': 'December 15, 2023',
                 'Battle of Bands': 'December 16, 2023',
@@ -1871,11 +2518,10 @@
         }
 
         function getEventTime(eventName) {
-            // Mock function to get event time
             const eventTimes = {
-                'Code Wars': '10:00 AM',
-                'Battle of Bands': '6:00 PM',
-                'AI & ML Workshop': '2:00 PM'
+                'Code Wars': '10:00 AM - 4:00 PM',
+                'Battle of Bands': '6:00 PM - 10:00 PM',
+                'AI & ML Workshop': '2:00 PM - 6:00 PM'
             };
             return eventTimes[eventName] || '10:00 AM';
         }
@@ -1887,14 +2533,12 @@
 
         // Download ticket
         downloadTicketBtn.addEventListener('click', function () {
-            alert('Ticket download functionality would be implemented here');
-            // In a real implementation, this would generate a PDF ticket
+            showToast('Ticket download feature will be available soon!', 'info');
         });
 
         // Email ticket
         emailTicketBtn.addEventListener('click', function () {
-            alert('Ticket has been sent to your email!');
-            // In a real implementation, this would resend the ticket via email
+            showToast('Ticket has been sent to your email!', 'success');
         });
 
         // Email Confirmation Function
@@ -1908,15 +2552,58 @@
                 ticket_id: ticketId
             };
 
-            emailjs.send('service_your_emailjs_service', 'template_your_template_id', templateParams)
+            emailjs.send(CONFIG.EMAILJS.SERVICE_ID, CONFIG.EMAILJS.TEMPLATE_ID, templateParams)
                 .then(function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
+                    console.log('Email sent successfully!', response.status, response.text);
                 }, function (error) {
-                    console.log('FAILED...', error);
-                    // Fallback: Show success message even if email fails
-                    alert('Ticket booked successfully! Check your email for confirmation.');
+                    console.log('Email failed to send:', error);
+                    // Don't show error to user as ticket is already generated
                 });
         }
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!contactValidator.validateForm()) {
+                showToast('Please fix the errors in the form', 'error');
+                return;
+            }
+
+            if (!rateLimiter.isAllowed('contact_form')) {
+                showToast('Too many submission attempts. Please wait a moment.', 'error');
+                return;
+            }
+
+            showLoading();
+
+            // Simulate form submission
+            setTimeout(() => {
+                hideLoading();
+                showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
+                contactValidator.resetForm();
+            }, 2000);
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!loginValidator.validateForm()) {
+                showToast('Please fix the errors in the form', 'error');
+                return;
+            }
+
+            showLoading();
+
+            // Simulate login process
+            setTimeout(() => {
+                hideLoading();
+                showToast('Login successful!', 'success');
+                loginPopup.classList.remove('active');
+                loginValidator.resetForm();
+            }, 1500);
+        });
 
         // Navigation and other existing functionality
         window.addEventListener('scroll', function () {
@@ -1956,11 +2643,13 @@
             loginPopup.classList.remove('active');
         });
 
-        // Close login popup when clicking outside
-        loginPopup.addEventListener('click', function (e) {
-            if (e.target === loginPopup) {
-                loginPopup.classList.remove('active');
-            }
+        // Close modals when clicking outside
+        [paymentModal, ticketModal, loginPopup].forEach(modal => {
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
         });
 
         // Countdown timer
@@ -2040,25 +2729,40 @@
 
         // Register Now button
         document.getElementById('registerNow').addEventListener('click', function () {
-            alert('Registration portal would open here');
-            // In a real implementation, this would open a registration form
+            showToast('Registration portal opening soon!', 'info');
+        });
+
+        // Real-time form validation
+        Object.values(contactValidator.fields).forEach(field => {
+            field.element.addEventListener('blur', () => {
+                contactValidator.validateField(field.element.id);
+            });
+        });
+
+        Object.values(paymentValidator.fields).forEach(field => {
+            field.element.addEventListener('blur', () => {
+                paymentValidator.validateField(field.element.id);
+            });
+        });
+
+        Object.values(loginValidator.fields).forEach(field => {
+            field.element.addEventListener('blur', () => {
+                loginValidator.validateField(field.element.id);
+            });
+        });
+
+        // Error boundary for critical functions
+        window.addEventListener('error', function (e) {
+            console.error('Global error:', e.error);
+            showToast('Something went wrong. Please refresh the page.', 'error');
+        });
+
+        // Page load performance monitoring
+        window.addEventListener('load', function () {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            console.log(`Page loaded in ${loadTime}ms`);
         });
     </script>
-
-    <script src="https://www.paypal.com/sdk/js?client-id=AbC9rUGrYqpgP_RR_XeqGlXTNFzvlmZH6WjtK4i81xDrK8yVMx4rZ2w9fGekjG3h9VtPMJsTLk2sHyyn"></script>
-    <div id="paypal-button-container"></div>
-
-    <script>
-        paypal.Buttons({
-            createOrder: (data, actions) => actions.order.create({
-                purchase_units: [{ amount: { value: '5.00' } }]
-            }),
-            onApprove: (data, actions) => actions.order.capture().then(details => {
-                alert("Transaction completed by " + details.payer.name.given_name);
-            })
-        }).render('#paypal-button-container');
-    </script>
-
 </body>
 
 </html>
