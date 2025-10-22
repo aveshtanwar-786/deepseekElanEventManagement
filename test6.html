@@ -2045,8 +2045,9 @@
         });
     </script>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AbC9rUGrYqpgP_RR_XeqGlXTNFzvlmZH6WjtK4i81xDrK8yVMx4rZ2w9fGekjG3h9VtPMJsTLk2sHyyn"></script>
-    <div id="paypal-button-container"></div>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AbC9rUGrYqpgP_RR_XeqGlXTNFzvlmZH6WjtK4i81xDrK8yVMx4rZ2w9fGekjG3h9VtPMJsTLk2sHyyn"></script>
+    <!-- <div id="paypal-button-container"></div>
 
     <script>
         paypal.Buttons({
@@ -2057,7 +2058,28 @@
                 alert("Transaction completed by " + details.payer.name.given_name);
             })
         }).render('#paypal-button-container');
+    </script> -->
+    <div id="paypal-button-container"></div>
+    <script>
+        paypal.Buttons({
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{ amount: { currency_code: 'USD', value: '10.00' } }]
+                });
+            },
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(details => {
+                    console.log('Captured', details);
+                    window.location.href = '/success.html';
+                });
+            },
+            onError: (err) => {
+                console.error('PayPal error', err);
+                window.location.href = '/error.html';
+            }
+        }).render('#paypal-button-container');
     </script>
+
 
 </body>
 
