@@ -2446,59 +2446,6 @@
             });
         }
 
-        // PayPal Payment Integration (Mock)
-        // function processPayPalPayment(name, email, phone, amount) {
-        //     return new Promise((resolve, reject) => {
-        //         // Simulate API call
-        //         setTimeout(() => {
-        //             if (Math.random() > 0.1) { // 90% success rate for demo
-        //                 generateTicket(name, email, phone, 'PP_' + Math.random().toString(36).substr(2, 9));
-        //                 paymentModal.classList.remove('active');
-        //                 showToast('Payment successful! Your ticket has been generated.', 'success');
-        //                 resolve();
-        //             } else {
-        //                 reject(new Error('PayPal payment failed'));
-        //             }
-        //         }, 2000);
-        //     });
-        // }
-
-        // Real PayPal Sandbox Integration
-//        function processPayPalPayment(name, email, phone, amount) {
-//   return new Promise((resolve, reject) => {
-//     if (!amount || isNaN(amount)) amount = 100; // fallback ₹100
-//     const usdAmount = (amount / 83).toFixed(2);
-//     const container = document.getElementById('paypal-button-container');
-//     container.innerHTML = '';
-
-//     paypal.Buttons({
-//       createOrder: (data, actions) => {
-//         console.log("Creating PayPal order:", usdAmount);
-//         return actions.order.create({
-//           purchase_units: [{
-//             amount: { value: usdAmount },
-//             description: `Ticket for ${selectedEvent || "E-LAN Test Event"}`
-//           }]
-//         });
-//       },
-      
-//       onApprove: (data, actions) => {
-//         return actions.order.capture().then(details => {
-//           const paymentId = 'PP_' + details.id;
-//           generateTicket(name, email, phone, paymentId);
-//           paymentModal.classList.remove('active');
-//           showToast('Payment successful! Your ticket has been generated.', 'success');
-//           resolve(details);
-//         });
-//       },
-//       onError: (err) => {
-//         console.error("PayPal error:", err);
-//         alert("Payment failed: " + err.message);
-//         reject(err);
-//       }
-//     }).render('#paypal-button-container');
-//   });
-// }
 
 function processPayPalPayment(name, email, phone, amount) {
   return new Promise((resolve, reject) => {
