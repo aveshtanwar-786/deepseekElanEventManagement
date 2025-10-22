@@ -28,6 +28,9 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AbC9rUGrYqpgP_RR_XeqGlXTNFzvlmZH6WjtK4i81xDrK8yVMx4rZ2w9fGekjG3h9VtPMJsTLk2sHyyn&currency=USD"></script>
+
 
     <style>
         :root {
@@ -1981,6 +1984,7 @@
                 </div>
                 <button type="submit" class="btn payment-btn" id="paymentSubmit">
                     <span class="btn-text">Pay Now</span>
+                    <div id="paypal-button-container" style="margin-top:20px;"></div>
                 </button>
             </form>
         </div>
@@ -2443,21 +2447,100 @@
         }
 
         // PayPal Payment Integration (Mock)
-        function processPayPalPayment(name, email, phone, amount) {
-            return new Promise((resolve, reject) => {
-                // Simulate API call
-                setTimeout(() => {
-                    if (Math.random() > 0.1) { // 90% success rate for demo
-                        generateTicket(name, email, phone, 'PP_' + Math.random().toString(36).substr(2, 9));
-                        paymentModal.classList.remove('active');
-                        showToast('Payment successful! Your ticket has been generated.', 'success');
-                        resolve();
-                    } else {
-                        reject(new Error('PayPal payment failed'));
-                    }
-                }, 2000);
-            });
-        }
+        // function processPayPalPayment(name, email, phone, amount) {
+        //     return new Promise((resolve, reject) => {
+        //         // Simulate API call
+        //         setTimeout(() => {
+        //             if (Math.random() > 0.1) { // 90% success rate for demo
+        //                 generateTicket(name, email, phone, 'PP_' + Math.random().toString(36).substr(2, 9));
+        //                 paymentModal.classList.remove('active');
+        //                 showToast('Payment successful! Your ticket has been generated.', 'success');
+        //                 resolve();
+        //             } else {
+        //                 reject(new Error('PayPal payment failed'));
+        //             }
+        //         }, 2000);
+        //     });
+        // }
+
+        // Real PayPal Sandbox Integration
+//        function processPayPalPayment(name, email, phone, amount) {
+//   return new Promise((resolve, reject) => {
+//     if (!amount || isNaN(amount)) amount = 100; // fallback ₹100
+//     const usdAmount = (amount / 83).toFixed(2);
+//     const container = document.getElementById('paypal-button-container');
+//     container.innerHTML = '';
+
+//     paypal.Buttons({
+//       createOrder: (data, actions) => {
+//         console.log("Creating PayPal order:", usdAmount);
+//         return actions.order.create({
+//           purchase_units: [{
+//             amount: { value: usdAmount },
+//             description: `Ticket for ${selectedEvent || "E-LAN Test Event"}`
+//           }]
+//         });
+//       },
+      
+//       onApprove: (data, actions) => {
+//         return actions.order.capture().then(details => {
+//           const paymentId = 'PP_' + details.id;
+//           generateTicket(name, email, phone, paymentId);
+//           paymentModal.classList.remove('active');
+//           showToast('Payment successful! Your ticket has been generated.', 'success');
+//           resolve(details);
+//         });
+//       },
+//       onError: (err) => {
+//         console.error("PayPal error:", err);
+//         alert("Payment failed: " + err.message);
+//         reject(err);
+//       }
+//     }).render('#paypal-button-container');
+//   });
+// }
+
+function processPayPalPayment(name, email, phone, amount) {
+  return new Promise((resolve, reject) => {
+    // ✅ Validation and conversion happen before PayPal Buttons
+    if (!amount || isNaN(amount)) amount = 100; // fallback ₹100
+    const usdAmount = (amount / 83).toFixed(2);
+    if (!selectedEvent) selectedEvent = "E-LAN Test Event";
+
+    const container = document.getElementById('paypal-button-container');
+    container.innerHTML = ''; // Clear any old buttons
+
+    // ✅ Initialize PayPal Buttons properly
+    paypal.Buttons({
+      createOrder: (data, actions) => {
+        console.log("Creating PayPal order:", usdAmount);
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: usdAmount },
+            description: `Ticket for ${selectedEvent}`
+          }]
+        });
+      },
+
+      onApprove: (data, actions) => {
+        return actions.order.capture().then(details => {
+          const paymentId = 'PP_' + details.id;
+          generateTicket(name, email, phone, paymentId);
+          paymentModal.classList.remove('active');
+          showToast('Payment successful! Your ticket has been generated.', 'success');
+          resolve(details);
+        });
+      },
+
+      onError: (err) => {
+        console.error("PayPal error:", err);
+        alert("Payment failed: " + err.message);
+        reject(err);
+      }
+    }).render('#paypal-button-container');
+  });
+}
+
 
         // Ticket Generation
         const ticketModal = document.getElementById('ticketModal');
